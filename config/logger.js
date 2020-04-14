@@ -5,7 +5,7 @@ function init() {
   const logger = createLogger({
     level: 'info',
     format: format.json(),
-    defaultMeta: { service: 'send-email-service' },
+    defaultMeta: { service: 'note-service' },
     transports: [
       //
       // - Write to all logs with level `info` and below to `combined.log`

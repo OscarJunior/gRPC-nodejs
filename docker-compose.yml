@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  mongodb:
+    image: mongo:3.6.13-xenial
+    command: --smallfiles
+    volumes:
+      - mongodbvolume:/data/db
+    ports:
+      - '27018:27018'
+    networks:
+      - note-service
+
+  note-service:
+    build:
+      context: '.'
+    command: ${CONTAINER_COMMAND}
+    restart: always
+    depends_on:
+      - mongodb
+    ports:
+      - '${CONTAINER_PORT}:${CONTAINER_PORT}'
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    networks:
+      - note-service
+    links:
+      - mongodb
+
+networks:
+  note-service:
+    driver: bridge
+
+volumes:
+  mongodbvolume:
