@@ -13,4 +13,4 @@ RUN npm install
 COPY . .
 
 # Expose application port
-EXPOSE 50051
+EXPOSE $CONTAINER_PORT
