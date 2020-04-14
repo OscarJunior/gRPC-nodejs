@@ -23,6 +23,7 @@ services:
     volumes:
       - '.:/app'
       - '/app/node_modules'
+      - '/app/logs'
     networks:
       - note-service
     links:

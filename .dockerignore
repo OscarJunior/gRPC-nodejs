@@ -5,8 +5,7 @@ docker-compose
 
 
 # logger
-error.log
-combined.log
+logs
 
 # config
 .eslintrc.json
