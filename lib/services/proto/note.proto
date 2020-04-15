@@ -3,7 +3,7 @@ syntax = "proto3";
 service NoteService {
   rpc list (Empty) returns (NoteList) {}
   rpc insert (Note) returns (GeneratedNote) {}
-  rpc deleteNoteById (NoteRequestId) returns (GeneratedNote) {}
+  rpc remove (NoteRequestId) returns (GeneratedNote) {}
 }
 
 message NoteList {
