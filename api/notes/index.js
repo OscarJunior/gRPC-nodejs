@@ -1,3 +1,3 @@
-const noteService = require('./noteService');
+const noteAPI = require('./noteAPI');
 
-module.exports = { noteService };
+module.exports = { noteAPI };

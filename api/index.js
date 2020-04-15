@@ -1,5 +1,3 @@
-const list = require('./list');
-const insert = require('./insert');
-const deleteNoteById = require('./delete');
+const { noteAPI } = require('./notes');
 
-module.exports = { list, insert, deleteNoteById };
+module.exports = { noteAPI };
