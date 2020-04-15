@@ -3,7 +3,7 @@ const path = require('path');
 const grpc = require('grpc');
 const logger = require('../config/logger');
 
-const PROTO_PATH = path.resolve('proto/note.proto');
+const PROTO_PATH = path.resolve('services/proto/note.proto');
 
 const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   keepCase: true,

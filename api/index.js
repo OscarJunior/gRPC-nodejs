@@ -1,4 +1,5 @@
-const features = require('./features');
-const noteService = require('./noteService');
+const list = require('./list');
+const insert = require('./insert');
+const deleteNoteById = require('./delete');
 
-module.exports = { features, noteService };
+module.exports = { list, insert, deleteNoteById };

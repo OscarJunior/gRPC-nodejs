@@ -5,13 +5,14 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server"
+    "start": "nodemon -L server"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@grpc/proto-loader": "^0.5.4",
     "grpc": "^1.24.2",
+    "mongoose": "^5.9.9",
     "rc": "^1.2.8",
     "winston": "^3.2.1"
   },
