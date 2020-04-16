@@ -28,10 +28,11 @@ const removeNoteById = async (id) => {
   const found = await noteDAL.deleteNoteById(id);
 
   if (!found) {
-    throw new ApiError({
-      code: grpc.status.NOT_FOUND,
-      name: DELETE_NO_EXISTING_NOTE
-    });
+    throw new ApiError(
+      grpc.status.INVALID_ARGUMENT,
+      DELETE_NO_EXISTING_NOTE,
+      'Check NoteId argument and try it again'
+    );
   }
 
   return found;

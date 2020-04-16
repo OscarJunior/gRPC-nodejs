@@ -5,14 +5,14 @@ function logError(err) {
     level: 'error',
     name: err.name,
     stack: err.stack,
-    isOperational: err.isOperational,
+    message: err.message,
   });
 }
 
-function handleError(err) {
+function handleError(err, isOperational = true) {
   logError(err);
 
-  if (err.isOperational) {
+  if (!isOperational) {
     process.exit(1);
   }
 }

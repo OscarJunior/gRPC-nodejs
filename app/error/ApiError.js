@@ -1,13 +1,10 @@
-function ApiError(definedError) {
+function ApiError(name, message, code) {
   Error.call(this);
   Error.captureStackTrace(this);
 
-  const { name, code, isOperational = false } = definedError;
-
   this.name = name;
-  this.message = name;
+  this.message = message;
   this.code = code;
-  this.isOperational = isOperational;
 }
 
 // extends
