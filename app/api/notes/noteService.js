@@ -1,18 +1,9 @@
 const grpc = require('grpc');
 
 const noteDAL = require('./noteDAL');
-const ApiError = require('../../error/ApiError');
-const { DELETE_NO_EXISTING_NOTE } = require('../../error/PRE_DEFINED_ERRORS');
+const { AppError, DELETE_NO_EXISTING_NOTE } = require('../../errors');
 
-const getNotesByQuery = (query, populates) => {
-  const result = noteDAL.findNotesByQuery(query);
-
-  if (!populates.length) {
-    return result;
-  }
-
-  return populates.reduce((acc, populate) => acc.populate(populate), result);
-};
+const getNotesByQuery = (query) => noteDAL.findNotesByQuery(query);
 
 const createNote = (body) => {
   const title = body.title || 'MY TITLE';
@@ -28,7 +19,7 @@ const removeNoteById = async (id) => {
   const found = await noteDAL.deleteNoteById(id);
 
   if (!found) {
-    throw new ApiError(
+    throw new AppError(
       grpc.status.INVALID_ARGUMENT,
       DELETE_NO_EXISTING_NOTE,
       'Check NoteId argument and try it again'
