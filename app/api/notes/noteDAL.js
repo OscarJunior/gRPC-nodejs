@@ -1,6 +1,11 @@
 const Note = require('./noteSchema');
 
-const findNotesByQuery = (query) => Note.find(query);
+const findNotesByQuery = (query) => {
+  const projection = null;
+  const { conditions = {}, options = {}, sorter = '' } = query;
+
+  return Note.find(conditions, projection, options).sort(sorter);
+};
 
 const findNoteById = (id) => Note.findById(id);
 
@@ -16,5 +21,5 @@ module.exports = {
   findNotesByQuery,
   saveNote,
   deleteNoteById,
-  findNoteById
+  findNoteById,
 };

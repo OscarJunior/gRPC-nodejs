@@ -3,7 +3,18 @@ const grpc = require('grpc');
 const noteDAL = require('./noteDAL');
 const { AppError, DELETE_NO_EXISTING_NOTE } = require('../../errors');
 
-const getNotesByQuery = (query) => noteDAL.findNotesByQuery(query);
+const getNotesByQuery = (query) => {
+  const options = {
+    limit: query.limit,
+    skip: query.skip,
+  };
+
+  return noteDAL.findNotesByQuery({
+    options,
+    conditions: query.conditions,
+    sorter: query.sorter,
+  });
+};
 
 const createNote = (body) => {
   const title = body.title || 'MY TITLE';

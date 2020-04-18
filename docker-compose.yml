@@ -20,6 +20,7 @@ services:
       - mongodb
     ports:
       - '${CONTAINER_PORT}:${CONTAINER_PORT}'
+      - '9229:9229'
     volumes:
       - '.:/app'
       - '/app/node_modules'

@@ -1,28 +1,49 @@
 syntax = "proto3";
 
 service NoteService {
-  rpc list (Empty) returns (NoteList) {}
-  rpc insert (Note) returns (GeneratedNote) {}
-  rpc remove (NoteRequestId) returns (GeneratedNote) {}
+  rpc list (SearchObject) returns (ListResponse) {}
+  rpc insert (InsertObject) returns (Response) {}
+  rpc remove (RemoveObject) returns (Response) {}
 }
 
-message NoteList {
-  repeated GeneratedNote notes = 1;
+message SearchObject {
+  message Conditions {
+    string title = 1;
+  }
+
+  message Query {
+    Conditions conditions = 1;
+    int32 pageNumber = 2;
+    int32 resultPerPage = 3;
+    string sorter = 4;
+  }
+
+  Query query = 1;
 }
 
-message GeneratedNote {
-  required string id = 1;
-  required string title = 2;
-  required string content = 3;
+message ListResponse {
+  repeated NoteResponse notes = 1;
 }
 
-message Empty {}
+message Response {
+  message NoteResponse {
+    required string id = 1;
+    required string title = 2;
+    required string content = 3;
+  }
 
-message Note {
-  string title = 1;
-  string content = 2;
+  required NoteResponse note = 1;
 }
 
-message NoteRequestId {
+message InsertObject {
+  message NoteBody {
+    string title = 1;
+    string content = 2;
+  }
+
+  required NoteBody body = 1;
+}
+
+message RemoveObject {
   required string id = 1;
 }

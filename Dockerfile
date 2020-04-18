@@ -14,3 +14,6 @@ COPY . .
 
 # Expose application port
 EXPOSE $CONTAINER_PORT
+
+# Debugger application port
+EXPOSE 9229

@@ -2,9 +2,9 @@ const noteService = require('./noteService');
 const { defaultErrorHandler } = require('../../errors');
 
 function list(call, callback) {
-  const defaultQuery = call.request;
+  const { query } = call.request;
 
-  noteService.getNotesByQuery(defaultQuery).then(
+  noteService.getNotesByQuery(query).then(
     (notes) => {
       callback(null, { notes });
     },
@@ -16,11 +16,11 @@ function list(call, callback) {
 }
 
 function insert(call, callback) {
-  const newNoteBody = call.request;
+  const { body } = call.request;
 
-  noteService.createNote(newNoteBody).then(
-    (createdNote) => {
-      callback(null, createdNote);
+  noteService.createNote(body).then(
+    (note) => {
+      callback(null, { note });
     },
     (err) => {
       defaultErrorHandler(err);
@@ -33,8 +33,8 @@ function remove(call, callback) {
   const { id: noteId } = call.request;
 
   noteService.removeNoteById(noteId).then(
-    (deletedNote) => {
-      callback(null, deletedNote);
+    (note) => {
+      callback(null, { note });
     },
     (err) => {
       defaultErrorHandler(err);
