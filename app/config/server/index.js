@@ -22,9 +22,9 @@ function start() {
   const notes_proto = grpc.loadPackageDefinition(packageDefinition);
 
   server.addService(notes_proto.NoteService.service, {
-    list: (call, callback) => utils.generateResponse(controller.list, call, callback),
-    insert: (call, callback) => utils.generateResponse(controller.insert, call, callback),
-    remove: (call, callback) => utils.generateResponse(controller.remove, call, callback),
+    list: (...args) => utils.generateResponse(controller.list, ...args),
+    insert: (...args) => utils.generateResponse(controller.insert, ...args),
+    remove: (...args) => utils.generateResponse(controller.remove, ...args),
   });
   server.bind(`0.0.0.0:${PORT}`, grpc.ServerCredentials.createInsecure());
 
