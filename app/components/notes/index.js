@@ -1,3 +1,3 @@
-const noteAPI = require('./noteAPI');
+const controller = require('./controller');
 
-module.exports = { noteAPI };
+module.exports = { controller };

@@ -2,10 +2,10 @@ const grpc = require('grpc');
 const path = require('path');
 const protoLoader = require('@grpc/proto-loader');
 
-const logger = require('../../utils/logger');
 const { PORT } = require('../environment');
-
-const { noteAPI } = require('../../components/notes');
+const logger = require('../../utils/logger');
+const { controller } = require('../../components/notes');
+const utils = require('./utils');
 
 function start() {
   const server = new grpc.Server();
@@ -21,8 +21,13 @@ function start() {
 
   const notes_proto = grpc.loadPackageDefinition(packageDefinition);
 
-  server.addService(notes_proto.NoteService.service, noteAPI);
+  server.addService(notes_proto.NoteService.service, {
+    list: (call, callback) => utils.generateResponse(controller.list, call, callback),
+    insert: (call, callback) => utils.generateResponse(controller.insert, call, callback),
+    remove: (call, callback) => utils.generateResponse(controller.remove, call, callback),
+  });
   server.bind(`0.0.0.0:${PORT}`, grpc.ServerCredentials.createInsecure());
+
   logger.log({
     level: 'info',
     message: `Your server is listening on port ${PORT} (http://0.0.0.0:${PORT})`,
