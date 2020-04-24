@@ -1,7 +1,7 @@
 const grpc = require('grpc');
 
 const noteDAL = require('./noteDAL');
-const { AppError, DELETE_NO_EXISTING_NOTE } = require('../../errors');
+const { AppError, DELETE_NO_EXISTING_NOTE } = require('../../utils/errors');
 
 const getNotesByQuery = (query) => {
   const options = {

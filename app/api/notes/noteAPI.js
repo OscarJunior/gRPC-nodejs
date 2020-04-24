@@ -1,5 +1,5 @@
 const noteService = require('./noteService');
-const { defaultErrorHandler } = require('../../errors');
+const { defaultErrorHandler } = require('../../utils/errors');
 
 function list(call, callback) {
   const { query } = call.request;

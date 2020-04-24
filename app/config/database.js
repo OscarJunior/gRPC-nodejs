@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { MONGO_URI } = require('./environment');
-const logger = require('./logger');
+const logger = require('../utils/logger');
 
 const DB_OPTIONS = {
   useNewUrlParser: true,

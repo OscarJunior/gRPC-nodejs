@@ -3,7 +3,7 @@ const path = require('path');
 const protoLoader = require('@grpc/proto-loader');
 
 const { PORT } = require('./config/environment');
-const logger = require('./config/logger');
+const logger = require('./utils/logger');
 const database = require('./config/database');
 
 const { noteAPI } = require('./api');

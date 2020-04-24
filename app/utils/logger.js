@@ -1,5 +1,5 @@
 const { createLogger, format, transports } = require('winston');
-const { NODE_ENV } = require('./environment');
+const { NODE_ENV } = require('../config/environment');
 
 function init() {
   const logger = createLogger({
