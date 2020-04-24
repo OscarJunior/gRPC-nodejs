@@ -3,31 +3,22 @@ const grpc = require('grpc');
 const {
   AppError,
   DELETE_NO_EXISTING_NOTE,
-  SKIP_IS_REQUIRED,
   LIMIT_IS_REQUIRED,
 } = require('../../utils/errors');
 const domain = require('./domain');
 
 const getNotesByQuery = (noteDAL, query) => {
-  if (!query.limit) {
+  if (query.resultPerPage === 0) {
     throw new AppError(
       grpc.status.INVALID_ARGUMENT,
       LIMIT_IS_REQUIRED,
-      'Check limit argument and try again'
-    );
-  }
-
-  if (!query.skip) {
-    throw new AppError(
-      grpc.status.INVALID_ARGUMENT,
-      SKIP_IS_REQUIRED,
-      'Check skip argument and try again'
+      'The resultPerPage argument can not be zero'
     );
   }
 
   const options = {
-    limit: query.limit,
-    skip: query.skip,
+    limit: query.resultPerPage,
+    skip: query.pageNumber,
   };
 
   return noteDAL.findNotesByQuery({
@@ -46,7 +37,7 @@ const removeNoteById = async (noteDAL, id) => {
     throw new AppError(
       grpc.status.INVALID_ARGUMENT,
       DELETE_NO_EXISTING_NOTE,
-      'Check NoteId argument and try it again'
+      'Check noteId argument and try it again'
     );
   }
 

@@ -13,8 +13,8 @@ message SearchObject {
 
   message Query {
     Conditions conditions = 1;
-    int32 pageNumber = 2;
-    int32 resultPerPage = 3;
+    required int32 pageNumber = 2;
+    required int32 resultPerPage = 3;
     string sorter = 4;
   }
 
