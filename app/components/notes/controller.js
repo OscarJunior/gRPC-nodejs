@@ -1,5 +1,5 @@
 const useCases = require('./useCases');
-const noteDAL = require('./noteDAL');
+const DAL = require('./DAL');
 
 function list(call) {
   const { query } = call.request;
@@ -12,19 +12,19 @@ function list(call) {
     query.sorter = '';
   }
 
-  return useCases.getNotesByQuery(noteDAL, query).then((notes) => ({ notes }));
+  return useCases.getNotesByQuery(DAL, query).then((notes) => ({ notes }));
 }
 
 function insert(call) {
   const { body } = call.request;
 
-  return useCases.createNote(noteDAL, body).then((note) => ({ note }));
+  return useCases.createNote(DAL, body).then((note) => ({ note }));
 }
 
 function remove(call) {
   const { id: noteId } = call.request;
 
-  return useCases.removeNoteById(noteDAL, noteId).then((note) => ({ note }));
+  return useCases.removeNoteById(DAL, noteId).then((note) => ({ note }));
 }
 
 module.exports = {

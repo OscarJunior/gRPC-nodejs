@@ -1,4 +1,4 @@
-const Note = require('./noteSchema');
+const Note = require('../../config/database/noteSchema');
 
 const findNotesByQuery = (query) => {
   const projection = null;
