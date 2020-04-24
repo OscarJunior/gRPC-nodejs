@@ -7,7 +7,7 @@ services:
     volumes:
       - mongodbvolume:/data/db
     ports:
-      - '27017:27017'
+      - '27018:27017'
     networks:
       - note-service
 
@@ -20,7 +20,7 @@ services:
       - mongodb
     ports:
       - '${CONTAINER_PORT}:${CONTAINER_PORT}'
-      - '9229:9229'
+      - '9228:9229'
     volumes:
       - '.:/app'
       - '/app/node_modules'
