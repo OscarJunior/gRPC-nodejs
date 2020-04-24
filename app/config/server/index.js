@@ -2,15 +2,14 @@ const grpc = require('grpc');
 const path = require('path');
 const protoLoader = require('@grpc/proto-loader');
 
-const { PORT } = require('./config/environment');
-const logger = require('./utils/logger');
-const database = require('./config/database');
+const logger = require('../../utils/logger');
+const { PORT } = require('../environment');
 
-const { noteAPI } = require('./api');
+const { noteAPI } = require('../../api');
 
-function main() {
+function start() {
   const server = new grpc.Server();
-  const PROTO_PATH = path.resolve('app/proto/note.proto');
+  const PROTO_PATH = path.resolve('app/config/server/proto/note.proto');
 
   const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
     keepCase: true,
@@ -28,8 +27,10 @@ function main() {
     level: 'info',
     message: `Your server is listening on port ${PORT} (http://0.0.0.0:${PORT})`,
   });
+
   server.start();
 }
 
-database.loadDB();
-main();
+module.exports = {
+  start,
+};
