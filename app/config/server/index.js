@@ -5,7 +5,7 @@ const protoLoader = require('@grpc/proto-loader');
 const logger = require('../../utils/logger');
 const { PORT } = require('../environment');
 
-const { noteAPI } = require('../../api');
+const { noteAPI } = require('../../components/notes');
 
 function start() {
   const server = new grpc.Server();
