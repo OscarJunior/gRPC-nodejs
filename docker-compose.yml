@@ -12,15 +12,14 @@ services:
       - note-service
 
   note-service:
+    env_file: .envrc.sample
     build:
       context: '.'
-    command: ${CONTAINER_COMMAND}
     restart: always
     depends_on:
       - mongodb
     ports:
-      - '${CONTAINER_PORT}:${CONTAINER_PORT}'
-      - '9228:9229'
+      - '50051:50051'
     volumes:
       - '.:/app'
       - '/app/node_modules'

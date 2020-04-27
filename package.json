@@ -5,7 +5,9 @@
   "main": "app/",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon -L --inspect=0.0.0.0 app/"
+    "generate:env": "chmod +x scripts/generateEnv.sh && ./scripts/generateEnv.sh",
+    "start:dev": "npm run generate:env && nodemon -L --inspect=0.0.0.0 app/",
+    "start:prod": "npm run generate:env && node app/"
   },
   "author": "",
   "license": "ISC",
