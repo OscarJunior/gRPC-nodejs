@@ -10,6 +10,9 @@ logs
 .eslintrc.json
 .prettierrc
 
+# deploy
+resource-manifests/
+
 .git
 .github
 .gitignore

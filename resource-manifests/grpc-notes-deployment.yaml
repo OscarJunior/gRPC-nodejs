@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grpc-notes
+  labels:
+    app: grpc-notes
+spec:
+  selector:
+     matchLabels:
+       app: grpc-notes
+  replicas: 2
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: 
+      maxUnavailable: 1
+      maxSurge: 1 
+  template:
+    metadata:
+      labels:
+        app: grpc-notes
+    spec:
+      containers:
+        - image: oscarjunior/notes-service
+          imagePullPolicy: Always
+          name: grpc-notes
+          ports:
+            - containerPort: 50051
+          env:
+            - name: PORT
+              value: "PORT"
+            - name: MONGO_URI
+              value: "MONGO_URI"
+            - name: NODE_ENV
+              value: "prod"
