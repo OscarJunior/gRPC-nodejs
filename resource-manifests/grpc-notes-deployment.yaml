@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: grpc-notes
+  name: grpc-notes-deployment
   labels:
     app: grpc-notes
 spec:
@@ -23,7 +23,7 @@ spec:
       containers:
         - image: oscarjunior/notes-service
           imagePullPolicy: Always
-          name: grpc-notes
+          name: grpc-notes-container
           ports:
             - containerPort: 50051
           env:

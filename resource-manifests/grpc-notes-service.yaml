@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: grpc-notes
+  name: grpc-notes-service
 spec:
   ports:
     - port: 50051
