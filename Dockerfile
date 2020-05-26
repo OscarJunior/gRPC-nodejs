@@ -1,8 +1,6 @@
 FROM node:10
 
 ENV PORT=${PORT}
-ENV MONGO_URI=${MONGO_URI}
-ENV NODE_ENV=${NODE_ENV}
 
 # Set the working directory
 WORKDIR /app
